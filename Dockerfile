@@ -15,4 +15,8 @@ RUN apt-get update && \
     tar -xzvf evans_linux_amd64.tar.gz && \
     mv evans ../bin && rm -f evans_linux_amd64.tar.gz
 
+RUN apt-get update && \ 
+    apt-get install libyajl2 kafkacat
+
+
 CMD ["tail", "-f", "/dev/null"]

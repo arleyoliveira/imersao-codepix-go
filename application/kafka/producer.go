@@ -2,8 +2,9 @@ package kafka
 
 import (
 	"fmt"
-	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
 	"os"
+
+	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
 func NewKafkaProducer() *ckafka.Producer {

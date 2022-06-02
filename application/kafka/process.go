@@ -2,13 +2,14 @@ package kafka
 
 import (
 	"fmt"
+	"os"
+
 	"github.com/arleyoliveira/imersao-codepix-go/application/factory"
 	appmodel "github.com/arleyoliveira/imersao-codepix-go/application/model"
 	"github.com/arleyoliveira/imersao-codepix-go/application/usecase"
 	"github.com/arleyoliveira/imersao-codepix-go/domain/model"
 	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
 	"github.com/jinzhu/gorm"
-	"os"
 )
 
 type KafkaProcessor struct {

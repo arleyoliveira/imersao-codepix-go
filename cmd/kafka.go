@@ -5,10 +5,11 @@ Copyright © 2022 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"os"
+
 	"github.com/arleyoliveira/imersao-codepix-go/application/kafka"
 	"github.com/arleyoliveira/imersao-codepix-go/infrastructure/db"
 	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
-	"os"
 
 	"github.com/spf13/cobra"
 )
