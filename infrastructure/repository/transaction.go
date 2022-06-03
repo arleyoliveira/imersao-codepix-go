@@ -22,8 +22,6 @@ func (t *TransactionRepositoryDb) Register(transaction *model.Transaction) error
 func (t *TransactionRepositoryDb) Save(transaction *model.Transaction) error {
 	err := t.Db.Save(transaction).Error
 
-	fmt.Printf("Transação ID: " + transaction.ID)
-
 	if err != nil {
 		return err
 	}

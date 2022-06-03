@@ -80,6 +80,7 @@ func (k *KafkaProcessor) processTransaction(msg *ckafka.Message) error {
 	transactionUseCase := factory.TransactionUseCaseFactory(k.Database)
 
 	createdTransaction, err := transactionUseCase.Register(
+		transaction.ID,
 		transaction.AccountID,
 		transaction.Amount,
 		transaction.PixKeyTo,
@@ -102,6 +103,8 @@ func (k *KafkaProcessor) processTransaction(msg *ckafka.Message) error {
 	}
 
 	err = Publish(string(transactionJson), topic, k.Producer, k.DeliveryChan)
+
+	fmt.Println(transactionJson)
 
 	if err != nil {
 		return err
