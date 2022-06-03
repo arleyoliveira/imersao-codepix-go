@@ -2,8 +2,9 @@ package usecase
 
 import (
 	"errors"
-	"github.com/arleyoliveira/imersao-codepix-go/domain/model"
 	"log"
+
+	"github.com/arleyoliveira/imersao-codepix-go/domain/model"
 )
 
 type TransactionUseCase struct {
@@ -27,12 +28,12 @@ func (t *TransactionUseCase) Register(accountId string, amount float64, pixKeyTo
 		return nil, err
 	}
 
-	err = t.TransactionRepository.Save(transaction)
-	if err != nil {
-		return nil, errors.New("unable to process this transaction")
+	t.TransactionRepository.Save(transaction)
+	if transaction.Base.ID != "" {
+		return transaction, nil
 	}
 
-	return transaction, nil
+	return nil, errors.New("unable to process this transaction")
 }
 
 func (t *TransactionUseCase) Confirm(transactionId string) (*model.Transaction, error) {

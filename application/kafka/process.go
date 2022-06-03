@@ -49,6 +49,7 @@ func (k *KafkaProcessor) Consume() {
 
 		if err == nil {
 			fmt.Println(string(msg.Value))
+			k.processMessage(msg)
 		}
 	}
 }
@@ -68,9 +69,11 @@ func (k *KafkaProcessor) processMessage(msg *ckafka.Message) {
 }
 
 func (k *KafkaProcessor) processTransaction(msg *ckafka.Message) error {
+
 	transaction := appmodel.NewTransaction()
 	err := transaction.ParseJson(msg.Value)
 	if err != nil {
+		fmt.Println("error to parse the transaction", err)
 		return err
 	}
 

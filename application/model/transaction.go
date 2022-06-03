@@ -3,6 +3,7 @@ package model
 import (
 	"encoding/json"
 	"fmt"
+
 	"github.com/go-playground/validator/v10"
 )
 
@@ -13,7 +14,7 @@ type Transaction struct {
 	PixKeyTo     string  `json:"pixKeyTo" validate:"required"`
 	PixKeyKindTo string  `json:"pixKeyKindTo" validate:"required"`
 	Description  string  `json:"description" validate:"required"`
-	Status       string  `json:"status" validate:"required"`
+	Status       string  `json:"status" validate:"-"`
 	Error        string  `json:"error"`
 }
 

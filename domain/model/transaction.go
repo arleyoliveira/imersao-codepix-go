@@ -2,9 +2,10 @@ package model
 
 import (
 	"errors"
+	"time"
+
 	"github.com/asaskevich/govalidator"
 	uuid "github.com/satori/go.uuid"
-	"time"
 )
 
 type TransactionRepositoryInterface interface {
@@ -59,11 +60,13 @@ func (transaction *Transaction) isValid() error {
 
 func NewTransaction(accountFrom *Account, amount float64, pixKeyTo *PixKey, description string) (*Transaction, error) {
 	transaction := Transaction{
-		AccountFrom: accountFrom,
-		Amount:      amount,
-		PixKeyTo:    pixKeyTo,
-		Status:      TransactionPending,
-		Description: description,
+		AccountFrom:   accountFrom,
+		AccountFromID: accountFrom.ID,
+		Amount:        amount,
+		PixKeyTo:      pixKeyTo,
+		PixKeyIdTo:    pixKeyTo.ID,
+		Status:        TransactionPending,
+		Description:   description,
 	}
 
 	transaction.ID = uuid.NewV4().String()
